@@ -22,12 +22,14 @@ public class Main extends Application {
             x = event.getSceneX();
             y = event.getSceneY();
         });
+        /*
         root.setOnMouseDragged(event -> {
 
             primaryStage.setX(event.getScreenX() - x);
             primaryStage.setY(event.getScreenY() - y);
 
         });
+         */
         primaryStage.show();
     }
 
