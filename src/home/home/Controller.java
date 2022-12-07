@@ -23,15 +23,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
 import java.awt.image.RenderedImage;
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
-import java.util.Stack;
+import java.util.*;
 
 public class Controller implements Initializable {
 
@@ -71,7 +70,7 @@ public class Controller implements Initializable {
     private Pane pnlOverview;
 
     @FXML
-    private Pane pnlMenus;
+    private BorderPane pnlMenus;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -291,14 +290,106 @@ public class Controller implements Initializable {
             sketch.setStyle("-fx-background-color : #FFFFFF");
             sketch.toFront();
         }
+
+
         if (actionEvent.getSource() == btnMenu) {
-            pnlMenus.setStyle("-fx-background-color : #53639F");
+            Button btnTTS = new Button("Text.To.Speech");
+            Button btnLetters = new Button("Bold Letters");
+            Button btnContrast = new Button("High Contrast");
+            Button btnDark = new Button("Dark Mode");
+            Button btnSave = new Button("Save All");
+
+            Button btnReset = new Button("Reset All");
+            VBox btns = new VBox(10);
+            btns.getChildren().addAll(btnTTS, btnLetters, btnContrast, btnDark, btnSave, btnReset);
+            pnlMenus.setLeft(btns);
+
+            //BoldLetters
+            List<Button> button_list = new ArrayList<Button>();
+            BoldLetters curr_letters = new BoldLetters();
+            button_list.add(btnTTS);
+            button_list.add(btnLetters);
+            button_list.add(btnContrast);
+            button_list.add(btnDark);
+            button_list.add(btnReset);
+            button_list.add(btnSave);
+            curr_letters.settingOption("Letters", button_list);
+            curr_letters.change_setting();
+
+            //HighContrast ColorBlind
+            Color_Blind_Settings alpha = new Color_Blind_Settings();
+            alpha.settingOption("HighContrast",button_list, pnlMenus);
+            alpha.change_setting();
+
+            //DarkMode
+            darkMode delta = new darkMode();
+            delta.settingOption("DarkMode",button_list, pnlMenus);
+            delta.change_setting();
+
+            //Text_to_speach
+            textToSpeach epsilon = new textToSpeach();
+            epsilon.settingOption("Text_To_Speach");
+            epsilon.change_setting();
+
+            //SettingsHandler
+            SettingsHandler current_handler = new SettingsHandler();
+            current_handler.SettingsHandler(curr_letters, alpha, delta, epsilon);
+
+            btnLetters.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    curr_letters.is_default = false;
+                }
+            });
+
+            btnSave.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    current_handler.update_all();
+                }
+            });
+
+            btnReset.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    curr_letters.is_default = true;
+                    alpha.default_setting = true;
+                    delta.default_setting = true;
+                    epsilon.is_default = true;
+                    current_handler.update_all();
+                }
+            });
+
+            btnDark.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    delta.default_setting = false;
+                }
+            });
+
+            btnContrast.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent t) {
+                    alpha.default_setting = false;
+                }
+            });
+
+
+
+            //change everything before this
             pnlMenus.toFront();
         }
+
+
+
+
         if (actionEvent.getSource() == btnOverview) {
             pnlOverview.setStyle("-fx-background-color : #02030A");
             pnlOverview.toFront();
         }
+
+
+
         if (actionEvent.getSource() == btnOrders) {
             //variables to hold the initial values of the text
             ColorPicker cpLine = new ColorPicker(Color.BLACK);
