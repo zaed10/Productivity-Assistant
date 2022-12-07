@@ -13,6 +13,8 @@ public class Ellipser implements Strategy{
      * @param fill Fill Colour
      * @param m MouseEvent
      */
+
+    //this draws an ellipse
     @Override
     public void drawObj(GraphicsContext gc, ColorPicker line, ColorPicker fill, MouseEvent m) {
         gc.setStroke(line.getValue());
