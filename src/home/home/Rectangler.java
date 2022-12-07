@@ -13,6 +13,7 @@ public class Rectangler implements Strategy{
      * @param fill Fill Colour
      * @param m MouseEvent
      */
+    //Reactangler draws a rectangle
     @Override
     public void drawObj(GraphicsContext gc, ColorPicker line, ColorPicker fill, MouseEvent m) {
         gc.setStroke(line.getValue());
