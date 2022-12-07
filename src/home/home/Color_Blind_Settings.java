@@ -13,7 +13,7 @@ public class Color_Blind_Settings extends settingOption {
     public boolean default_setting;
     public List<Button> gamma = new ArrayList<Button>();
     public BorderPane alpha;
-
+    //colorblind settings extends settingoption for high contrast colors
 
     public void settingOption(String name, List<Button> zeta, BorderPane curr_pane) {
         name_of_setting = name;
