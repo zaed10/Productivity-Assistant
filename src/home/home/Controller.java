@@ -28,8 +28,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.FileChooser;
 
-import javax.imageio.ImageIO;
-import java.awt.image.RenderedImage;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
