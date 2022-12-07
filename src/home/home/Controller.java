@@ -111,8 +111,8 @@ public class Controller implements Initializable {
          */
     }
 
-    // on click func -> call function from To Do class inside (i.e. create new task)
     public void btnNewTask(ActionEvent actionEvent) {
+        // button for adding new tasks
         home.Task t1 = new home.Task(taskName.getText(), priority.getText());
         list.add(t1);
         eventList.setItems(list);
