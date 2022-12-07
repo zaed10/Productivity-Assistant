@@ -23,7 +23,7 @@ public class Color_Blind_Settings extends settingOption {
     }
     public void change_setting()
     {
-        if (default_setting)
+        if (!default_setting)
         {
             alpha.setStyle("-fx-background-color : #53639F");
             for (int i = 0; i < gamma.size(); ++i)
@@ -35,7 +35,6 @@ public class Color_Blind_Settings extends settingOption {
 
         else
         {
-            alpha.setStyle("-fx-background-color : #FFFF00");
             for (int i = 0; i < gamma.size(); ++i)
             {
                 Button curr_button = gamma.get(i);

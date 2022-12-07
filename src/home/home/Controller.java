@@ -377,7 +377,7 @@ public class Controller implements Initializable {
                 @Override
                 public void handle(MouseEvent t) {
                     curr_letters.is_default = true;
-                    alpha.default_setting = true;
+                    alpha.is_default = true;
                     delta.default_setting = true;
                     epsilon.is_default = true;
                     current_handler.update_all();
@@ -397,8 +397,6 @@ public class Controller implements Initializable {
                     alpha.default_setting = false;
                 }
             });
-
-
 
             //change everything before this
             pnlMenus.toFront();
