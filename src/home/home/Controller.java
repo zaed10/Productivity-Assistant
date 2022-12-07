@@ -77,6 +77,7 @@ public class Controller implements Initializable {
 
     @FXML
     private TextField taskName;
+    // add all inst attributes
 
     @FXML
     private Button addBtn;
