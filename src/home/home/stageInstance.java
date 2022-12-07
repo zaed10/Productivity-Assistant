@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 public class stageInstance implements advancedInterface {
     @Override
     public void switchToVbox(Stage primaryStage) {
+        //switches stage to Vbox
         VBox convertedbox = new VBox();
         BorderRepeat BorderRepeat1 = null;
         BorderRepeat BorderRepeat2 = null;
