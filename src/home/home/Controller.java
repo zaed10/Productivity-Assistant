@@ -1,6 +1,8 @@
 package home;
 
 // import javafx.embed.swing.SwingFXUtils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
@@ -32,11 +35,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
+import assistant.*;
+
 public class Controller implements Initializable {
 
+    @FXML
+    private BorderPane pnlPackages;
     @FXML
     private VBox pnItems = null;
     @FXML
@@ -71,6 +79,24 @@ public class Controller implements Initializable {
 
     @FXML
     private Pane pnlMenus;
+    @FXML
+    private TextField priority;
+
+    @FXML
+//    private Label taskName;
+    private TextField taskName;
+
+    @FXML
+    private Button addBtn;
+
+//    @FXML
+//    private ListView<Task> eventStack;
+
+    @FXML
+    ListView<Task> eventList;
+    ObservableList<Task> list = FXCollections.observableArrayList();
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -80,22 +106,23 @@ public class Controller implements Initializable {
 
                 final int j = i;
                 nodes[i] = FXMLLoader.load(getClass().getResource("Item.fxml"));
-
-                //give the items some effect
-
-                nodes[i].setOnMouseEntered(event -> {
-                    nodes[j].setStyle("-fx-background-color : #0A0E3F");
-                });
-                nodes[i].setOnMouseExited(event -> {
-                    nodes[j].setStyle("-fx-background-color : #02030A");
-                });
-                pnItems.getChildren().add(nodes[i]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
     }
+
+    // on click func -> call function from To Do class inside (i.e. create new task)
+    public void btnNewTask(ActionEvent actionEvent) {
+        Task t1 = new Task(taskName.getText(), priority.getText());
+//        curr_list.addTask(t1);
+        list.add(t1);
+        eventList.setItems(list);
+
+
+    }
+
 
 
     public void handleClicks(ActionEvent actionEvent) {
@@ -511,6 +538,11 @@ public class Controller implements Initializable {
         {
             pnlOrders.setStyle("-fx-background-color : #464F67");
             pnlOrders.toFront();
+        }
+
+        if (actionEvent.getSource() == btnPackages) {
+            pnlPackages.setStyle("-fx-background-color : #02030A");
+            pnlPackages.toFront();
         }
     }
 }
