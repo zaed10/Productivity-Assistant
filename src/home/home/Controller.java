@@ -1,6 +1,8 @@
 package home;
 
 // import javafx.embed.swing.SwingFXUtils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -73,9 +75,23 @@ public class Controller implements Initializable {
     @FXML
     private Pane pnlMenus;
 
+    @FXML
+    private TextField priority;
+
+    @FXML
+    private TextField taskName;
+
+    @FXML
+    private Button addBtn;
+
+    @FXML
+    ListView<home.Task> eventList;
+    ObservableList<Task> list = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Node[] nodes = new Node[10];
+        /*
         for (int i = 0; i < nodes.length; i++) {
             try {
 
@@ -95,6 +111,14 @@ public class Controller implements Initializable {
                 e.printStackTrace();
             }
         }
+         */
+    }
+
+    // on click func -> call function from To Do class inside (i.e. create new task)
+    public void btnNewTask(ActionEvent actionEvent) {
+        home.Task t1 = new home.Task(taskName.getText(), priority.getText());
+        list.add(t1);
+        eventList.setItems(list);
     }
 
 
