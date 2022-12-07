@@ -13,6 +13,7 @@ public class anyGui implements myInterface {
             guiAdapter.display(instanceType,box,stage);
         }
         else{
+            //the case where display is run on an invalid instance type
             System.out.println("Invalid instance. " + instanceType + " format not supported");
         }
     }
