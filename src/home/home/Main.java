@@ -16,22 +16,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Home.fxml")));
         primaryStage.setScene(new Scene(root));
-        //set stage borderless
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
-        //drag it here
         root.setOnMousePressed(event -> {
             x = event.getSceneX();
             y = event.getSceneY();
         });
-        /*
-        root.setOnMouseDragged(event -> {
 
-            primaryStage.setX(event.getScreenX() - x);
-            primaryStage.setY(event.getScreenY() - y);
-
-        });
-         */
+        //Our code does not allow the gui to be dragged around the screen
         primaryStage.show();
     }
 
