@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 public class guiAdapter implements myInterface {
 
     advancedInterface advancedInterface;
-
+    // CREATES new instances for vbox and stage
     public guiAdapter(String instanceType){
 
         if(instanceType.equalsIgnoreCase("vbox")){
