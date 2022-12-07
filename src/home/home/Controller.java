@@ -1,6 +1,8 @@
 package home;
 
 // import javafx.embed.swing.SwingFXUtils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -72,9 +74,23 @@ public class Controller implements Initializable {
     @FXML
     private BorderPane pnlMenus;
 
+    @FXML
+    private TextField priority;
+
+    @FXML
+    private TextField taskName;
+
+    @FXML
+    private Button addBtn;
+
+    @FXML
+    ListView<home.Task> eventList;
+    ObservableList<Task> list = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Node[] nodes = new Node[10];
+        /*
         for (int i = 0; i < nodes.length; i++) {
             try {
 
@@ -94,6 +110,14 @@ public class Controller implements Initializable {
                 e.printStackTrace();
             }
         }
+         */
+    }
+
+    // on click func -> call function from To Do class inside (i.e. create new task)
+    public void btnNewTask(ActionEvent actionEvent) {
+        home.Task t1 = new home.Task(taskName.getText(), priority.getText());
+        list.add(t1);
+        eventList.setItems(list);
     }
 
 
@@ -162,36 +186,36 @@ public class Controller implements Initializable {
 
             canvas.setOnMousePressed(e -> {
                 if (drowbtn.isSelected()) {
-                    gc.setStroke(cpLine.getValue());
-                    gc.beginPath();
-                    gc.lineTo(e.getX(), e.getY());
+                    Context cont = new Context(new Drawer());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                 } else if (eraser.isSelected()) {
-                    double lineWidth = gc.getLineWidth();
-                    gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2, lineWidth, lineWidth);
+                    Context cont = new Context(new Eraser());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                 } else if (linebtn.isSelected()) {
-                    gc.setStroke(cpLine.getValue());
+                    Context cont = new Context(new Liner());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                     line.setStartX(e.getX());
                     line.setStartY(e.getY());
                 } else if (rectangle.isSelected()) {
-                    gc.setStroke(cpLine.getValue());
-                    gc.setFill(cpFill.getValue());
+                    Context cont = new Context(new Rectangler());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                     rect.setX(e.getX());
                     rect.setY(e.getY());
                 } else if (circle.isSelected()) {
-                    gc.setStroke(cpLine.getValue());
-                    gc.setFill(cpFill.getValue());
+                    Context cont = new Context(new Circler());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                     circ.setCenterX(e.getX());
                     circ.setCenterY(e.getY());
                 } else if (ellipse.isSelected()) {
-                    gc.setStroke(cpLine.getValue());
-                    gc.setFill(cpFill.getValue());
+                    Context cont = new Context(new Ellipser());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                     elps.setCenterX(e.getX());
                     elps.setCenterY(e.getY());
                 } else if (textbtn.isSelected()) {
                     gc.setLineWidth(1);
                     gc.setFont(Font.font(slider.getValue()));
-                    gc.setStroke(cpLine.getValue());
-                    gc.setFill(cpFill.getValue());
+                    Context cont = new Context(new Texter());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                     gc.fillText(text.getText(), e.getX(), e.getY());
                     gc.strokeText(text.getText(), e.getX(), e.getY());
                 }
@@ -492,14 +516,14 @@ public class Controller implements Initializable {
             bar.getMenus().add(fontStyle);
             bar.getMenus().add(themeMenu);
 
-            //creates a vbox and adds the elements of the bar and text to it
+            //creates a vbox
             VBox box = new VBox(bar, text);
 
             Scene scene = new Scene(box, 750, 500);
             String css = Main.class.getResource("style.css").toExternalForm();
             scene.getStylesheets().add(css);
 
-            //makes a set on action method for newItem to create a new blank canvas to type on
+            //makes a set on action method
             newItem.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -538,7 +562,7 @@ public class Controller implements Initializable {
                             text.setStyle("-fx-control-inner-background:white;" + font.toString() + style.toString() + txtSize.toString() + color.toString());
                         }
                     });
-            //makes a set on action method for black text
+            //black text
             blackTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -555,7 +579,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for red text
+            //red text
             redTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -572,7 +596,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for blue text
+            //blue text
             blueTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -589,7 +613,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for green text
+            //green text
             greenTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -606,7 +630,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for pink text
+            //pink text
             pinkTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -623,7 +647,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for purple text
+            //purple text
             purpleTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -640,7 +664,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for black theme
+            //black theme
             blackTheme.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -670,7 +694,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for white theme
+            //white theme
             whiteTheme.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -700,7 +724,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for fontSize0
+            //font size 0
             fontSize0.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -718,7 +742,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for fontSize1
+            //font size 1
             fontSize1.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -736,7 +760,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for fontSize2
+            //font size 2
             fontSize2.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -754,7 +778,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for fontSize3
+            //font size 3
             fontSize3.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -772,7 +796,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for fontSize4
+            //font size 4
             fontSize4.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -790,7 +814,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for fontSize5
+            //font size 5
             fontSize5.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -808,7 +832,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for serif
+            //serif font
             serif.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -826,7 +850,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for monospace
+            //monospace font
             monspace.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -844,7 +868,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for impact
+            //impact font
             impact.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -862,7 +886,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for sans_serif
+            //sans_serif font
             sans_serif.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -880,7 +904,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for chiller
+            //chiller font
             chiller.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -898,7 +922,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for tahoma
+            //tahoma font
             tahoma.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -916,7 +940,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for defaultStyle
+            //characters set to default
             defaultStyle.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -934,7 +958,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for italicItem
+            //italisizes characters
             italicItem.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -953,7 +977,7 @@ public class Controller implements Initializable {
             );
 
 
-            //makes a set on action method for boldItem
+            //bolds characters
             boldItem.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -971,6 +995,7 @@ public class Controller implements Initializable {
                     }
             );
 
+            //underlines characters
             underlineItem.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -984,6 +1009,7 @@ public class Controller implements Initializable {
                     }
             );
 
+            //strikethrough characters
             strikethroughItem.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -1007,6 +1033,3 @@ public class Controller implements Initializable {
         }
     }
 }
-
-
-
