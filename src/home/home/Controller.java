@@ -163,36 +163,36 @@ public class Controller implements Initializable {
 
             canvas.setOnMousePressed(e -> {
                 if (drowbtn.isSelected()) {
-                    gc.setStroke(cpLine.getValue());
-                    gc.beginPath();
-                    gc.lineTo(e.getX(), e.getY());
+                    Context cont = new Context(new Drawer());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                 } else if (eraser.isSelected()) {
-                    double lineWidth = gc.getLineWidth();
-                    gc.clearRect(e.getX() - lineWidth / 2, e.getY() - lineWidth / 2, lineWidth, lineWidth);
+                    Context cont = new Context(new Eraser());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                 } else if (linebtn.isSelected()) {
-                    gc.setStroke(cpLine.getValue());
+                    Context cont = new Context(new Liner());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                     line.setStartX(e.getX());
                     line.setStartY(e.getY());
                 } else if (rectangle.isSelected()) {
-                    gc.setStroke(cpLine.getValue());
-                    gc.setFill(cpFill.getValue());
+                    Context cont = new Context(new Rectangler());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                     rect.setX(e.getX());
                     rect.setY(e.getY());
                 } else if (circle.isSelected()) {
-                    gc.setStroke(cpLine.getValue());
-                    gc.setFill(cpFill.getValue());
+                    Context cont = new Context(new Circler());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                     circ.setCenterX(e.getX());
                     circ.setCenterY(e.getY());
                 } else if (ellipse.isSelected()) {
-                    gc.setStroke(cpLine.getValue());
-                    gc.setFill(cpFill.getValue());
+                    Context cont = new Context(new Ellipser());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                     elps.setCenterX(e.getX());
                     elps.setCenterY(e.getY());
                 } else if (textbtn.isSelected()) {
                     gc.setLineWidth(1);
                     gc.setFont(Font.font(slider.getValue()));
-                    gc.setStroke(cpLine.getValue());
-                    gc.setFill(cpFill.getValue());
+                    Context cont = new Context(new Texter());
+                    cont.executeStrategy(gc, cpLine, cpFill, e);
                     gc.fillText(text.getText(), e.getX(), e.getY());
                     gc.strokeText(text.getText(), e.getX(), e.getY());
                 }
