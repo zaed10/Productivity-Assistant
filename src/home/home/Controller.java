@@ -830,7 +830,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //serif font
+            //change to serif font
             serif.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -848,7 +848,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //monospace font
+            //change to monospace font
             monspace.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -866,7 +866,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //impact font
+            //change to impact font
             impact.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
