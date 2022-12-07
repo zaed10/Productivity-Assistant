@@ -12,6 +12,7 @@ public class vboxInstance implements advancedInterface {
 
     @Override
     public void switchToStage(VBox box) {
+        //switches box to stage
         Stage convertedStage = new Stage();
         convertedStage.setMaxHeight(box.getMaxHeight());
         convertedStage.setMinHeight(box.getMinHeight());
