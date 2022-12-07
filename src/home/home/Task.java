@@ -5,8 +5,8 @@ public class Task {
     public String priority; // can only be 1, 2 or 3
 
     public Task(String taskName, String priority) {
-        this.taskName = taskName;
-        this.priority = priority;
+        this.taskName = taskName; // input name of task
+        this.priority = priority; // input priority level
     }
 
     public void changeName(String newName) {
