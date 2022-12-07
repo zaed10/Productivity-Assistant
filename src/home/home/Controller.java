@@ -425,14 +425,14 @@ public class Controller implements Initializable {
             bar.getMenus().add(fontStyle);
             bar.getMenus().add(themeMenu);
 
-            //creates a vbox and adds the elements of the bar and text to it
+            //creates a vbox
             VBox box = new VBox(bar, text);
 
             Scene scene = new Scene(box, 750, 500);
             String css = Main.class.getResource("style.css").toExternalForm();
             scene.getStylesheets().add(css);
 
-            //makes a set on action method for newItem to create a new blank canvas to type on
+            //makes a set on action method
             newItem.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -471,7 +471,7 @@ public class Controller implements Initializable {
                             text.setStyle("-fx-control-inner-background:white;" + font.toString() + style.toString() + txtSize.toString() + color.toString());
                         }
                     });
-            //makes a set on action method for black text
+            //black text
             blackTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -488,7 +488,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for red text
+            //red text
             redTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -505,7 +505,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for blue text
+            //blue text
             blueTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -522,7 +522,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for green text
+            //green text
             greenTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -539,7 +539,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for pink text
+            //pink text
             pinkTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -556,7 +556,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for purple text
+            //purple text
             purpleTxt.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -573,7 +573,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for black theme
+            //black theme
             blackTheme.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -603,7 +603,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for white theme
+            //white theme
             whiteTheme.setOnAction(
                     new EventHandler<ActionEvent>() {
                         @Override
@@ -633,7 +633,7 @@ public class Controller implements Initializable {
                         }
                     });
 
-            //makes a set on action method for fontSize0
+            //font size 0
             fontSize0.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -651,7 +651,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for fontSize1
+            //font size 1
             fontSize1.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -669,7 +669,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for fontSize2
+            //font size 2
             fontSize2.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -687,7 +687,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for fontSize3
+            //font size 3
             fontSize3.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -705,7 +705,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for fontSize4
+            //font size 4
             fontSize4.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -723,7 +723,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for fontSize5
+            //font size 5
             fontSize5.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -741,7 +741,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for serif
+            //serif font
             serif.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -759,7 +759,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for monospace
+            //monospace font
             monspace.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -777,7 +777,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for impact
+            //impact font
             impact.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -795,7 +795,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for sans_serif
+            //sans_serif font
             sans_serif.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -813,7 +813,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for chiller
+            //chiller font
             chiller.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -831,7 +831,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for tahoma
+            //tahoma font
             tahoma.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -849,7 +849,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for defaultStyle
+            //characters set to default
             defaultStyle.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -867,7 +867,7 @@ public class Controller implements Initializable {
                     }
             );
 
-            //makes a set on action method for italicItem
+            //italisizes characters
             italicItem.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -886,7 +886,7 @@ public class Controller implements Initializable {
             );
 
 
-            //makes a set on action method for boldItem
+            //bolds characters
             boldItem.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -904,6 +904,7 @@ public class Controller implements Initializable {
                     }
             );
 
+            //underlines characters
             underlineItem.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
@@ -917,6 +918,7 @@ public class Controller implements Initializable {
                     }
             );
 
+            //strikethrough characters
             strikethroughItem.setOnAction(
                     new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent actionevent) {
