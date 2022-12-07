@@ -489,7 +489,6 @@ public class Controller implements Initializable {
         }
         if (actionEvent.getSource() == btnOrders) {
             //sets title for notepad
-            System.out.println("Yoo");
             // primaryStage.setTitle("Untitled");
 
             //sets title for notepad
