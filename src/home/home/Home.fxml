@@ -114,7 +114,7 @@
       </VBox>
       <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
          <children>
-            <BorderPane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
+            <BorderPane fx:id="sketch" prefHeight="200.0" prefWidth="200.0" />
             <BorderPane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0">
